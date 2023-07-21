@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\Impacta.GAD.WebAPI.props" />
+</Project>

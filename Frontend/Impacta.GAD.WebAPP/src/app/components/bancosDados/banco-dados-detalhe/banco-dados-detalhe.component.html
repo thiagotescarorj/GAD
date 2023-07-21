@@ -1,0 +1,27 @@
+<div class="card rounded shadow-sm p-3">
+    <div>
+        <h3>Detalhe do Chamado {{bancoDados.nome}}</h3>
+    </div>
+    <table  class="table table-striped table-hover">
+        <tbody *ngIf="bancoDados">
+
+            <tr>
+                <td class="titulo">ID:</td>
+                <td class="conteudo">{{bancoDados.id}}</td>
+                <td class="titulo">Numero:</td>
+                <td class="conteudo">{{bancoDados.nome}}</td>
+            </tr>
+            <tr>
+                <td class="titulo">Status:</td>
+                <td class="conteudo">{{bancoDados.isAtivo ? 'Ativo' : 'Inativo'}}</td>
+                <td class="titulo">Data de Cadastro:</td>
+                <td class="conteudo">{{bancoDados.dataHoraCadastro | DateTimeFormat}}</td>
+            </tr>
+            <tr>
+                <td class="titulo">Status:</td>
+                <td class="conteudo">{{bancoDados.isAtivo ? 'Ativo' : 'Inativo'}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
