@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Impacta.GAD.Application.DTOs;
 using Impacta.GAD.Application.Interfaces;
+using Impacta.GAD.Domain.Identity;
 using Impacta.GAD.Domain.Models;
 using Impacta.GAD.Repository.Interfaces;
 using System;
@@ -26,13 +27,14 @@ namespace Impacta.GAD.Application.Services
             _mapper = mapper;
         }
 
-        public async Task<ChamadoDTO> AdicionarChamado(ChamadoDTO model)
+        public async Task<ChamadoDTO> AdicionarChamado(ChamadoDTO model, long usuarioLogadoId)
         {
             try
-            {
+            {    
                 var chamado = _mapper.Map<Chamado>(model);
 
                 chamado.DataHoraCadastro = DateTime.Now;
+                chamado.UsuarioCadastoId = usuarioLogadoId;
 
                 _GBTRepository.Adicionar<Chamado>(chamado);
 
@@ -144,6 +146,19 @@ namespace Impacta.GAD.Application.Services
             }
             catch (Exception ex)
             {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<ChamadoDTO> GetChamadoFromUser(long chamadoId, long userId) {
+            try {
+                var chamado = await _chamadoRepository.GetChamadoByUser(chamadoId, userId);
+                if (chamado == null) return null;
+
+                var resultado = _mapper.Map<ChamadoDTO>(chamado);
+
+                return resultado;
+            } catch (Exception ex) {
                 throw new Exception(ex.Message);
             }
         }

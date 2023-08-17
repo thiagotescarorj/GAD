@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Impacta.GAD.Application.DTOs;
 using Impacta.GAD.Application.Interfaces;
+using Impacta.GAD.Domain.Enumeradores;
 using Impacta.GAD.Domain.Identity;
 using Impacta.GAD.Repository.Interfaces;
 using Microsoft.AspNetCore.Identity;
@@ -49,9 +50,30 @@ namespace Impacta.GAD.Application.Services
         {
             try
             {
+
+                if (await UserExists("admin@elawio.com.br") == false)
+                {
+                    var userAdmin = new UserDTO()
+                    {
+                        Email = "admin@elawio.com.br",
+                        Nome = "Administrador GDA",
+                        Password = "gf@!#hGGet12",
+                        
+                    };
+
+                    var admin = _mapper.Map<User>(userAdmin);
+                    admin.UserName = userAdmin.Email;
+                    admin.Pefil = EnumPefil.Administrador;
+                    admin.IsAtivo = true;
+
+                   await _userManager.CreateAsync(admin, userAdmin.Password);
+
+                }
+
                 var user = _mapper.Map<User>(userDTO);
                 user.UserName = userDTO.Email;
                 user.NomeCompleto = userDTO.Nome + " " + userDTO.Sobrenome;
+                user.Pefil = EnumPefil.Desenvolvedor;
 
                 var result = await _userManager.CreateAsync(user, userDTO.Password);
 

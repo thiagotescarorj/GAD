@@ -22,3 +22,15 @@ D:\Projetos\GAD\GAD\Backend\Impacta.GAD\Impacta.GAD.Domain\obj\Debug\net6.0\Impa
 D:\Projetos\GAD\GAD\Backend\Impacta.GAD\Impacta.GAD.Domain\obj\Debug\net6.0\refint\Impacta.GAD.Domain.dll
 D:\Projetos\GAD\GAD\Backend\Impacta.GAD\Impacta.GAD.Domain\obj\Debug\net6.0\Impacta.GAD.Domain.pdb
 D:\Projetos\GAD\GAD\Backend\Impacta.GAD\Impacta.GAD.Domain\obj\Debug\net6.0\ref\Impacta.GAD.Domain.dll
+C:\Users\ttescaro\Documents\GitHub\GAD\Backend\Impacta.GAD\Impacta.GAD.Domain\bin\Debug\net6.0\Impacta.GAD.Domain.deps.json
+C:\Users\ttescaro\Documents\GitHub\GAD\Backend\Impacta.GAD\Impacta.GAD.Domain\bin\Debug\net6.0\Impacta.GAD.Domain.dll
+C:\Users\ttescaro\Documents\GitHub\GAD\Backend\Impacta.GAD\Impacta.GAD.Domain\bin\Debug\net6.0\Impacta.GAD.Domain.pdb
+C:\Users\ttescaro\Documents\GitHub\GAD\Backend\Impacta.GAD\Impacta.GAD.Domain\obj\Debug\net6.0\Impacta.GAD.Domain.csproj.AssemblyReference.cache
+C:\Users\ttescaro\Documents\GitHub\GAD\Backend\Impacta.GAD\Impacta.GAD.Domain\obj\Debug\net6.0\Impacta.GAD.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ttescaro\Documents\GitHub\GAD\Backend\Impacta.GAD\Impacta.GAD.Domain\obj\Debug\net6.0\Impacta.GAD.Domain.AssemblyInfoInputs.cache
+C:\Users\ttescaro\Documents\GitHub\GAD\Backend\Impacta.GAD\Impacta.GAD.Domain\obj\Debug\net6.0\Impacta.GAD.Domain.AssemblyInfo.cs
+C:\Users\ttescaro\Documents\GitHub\GAD\Backend\Impacta.GAD\Impacta.GAD.Domain\obj\Debug\net6.0\Impacta.GAD.Domain.csproj.CoreCompileInputs.cache
+C:\Users\ttescaro\Documents\GitHub\GAD\Backend\Impacta.GAD\Impacta.GAD.Domain\obj\Debug\net6.0\Impacta.GAD.Domain.dll
+C:\Users\ttescaro\Documents\GitHub\GAD\Backend\Impacta.GAD\Impacta.GAD.Domain\obj\Debug\net6.0\refint\Impacta.GAD.Domain.dll
+C:\Users\ttescaro\Documents\GitHub\GAD\Backend\Impacta.GAD\Impacta.GAD.Domain\obj\Debug\net6.0\Impacta.GAD.Domain.pdb
+C:\Users\ttescaro\Documents\GitHub\GAD\Backend\Impacta.GAD\Impacta.GAD.Domain\obj\Debug\net6.0\ref\Impacta.GAD.Domain.dll

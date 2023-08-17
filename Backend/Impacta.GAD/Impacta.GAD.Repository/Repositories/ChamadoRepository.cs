@@ -48,9 +48,17 @@ namespace Impacta.GAD.Repository.Repositories
 
         public async Task<Chamado> GetChamadoById(long chamadoId)
         {
-            IQueryable<Chamado> query = _context.Chamado;
+            IQueryable<Chamado> query = _context.Chamado.Where(x => x.Id == chamadoId);
 
-            return await query.Where(x => x.Id == chamadoId).FirstOrDefaultAsync();
+            return await query.AsNoTracking().FirstOrDefaultAsync();
+
+
+        }
+
+        public async Task<Chamado> GetChamadoByUser(long chamadoId, long userId) {
+            IQueryable<Chamado> query = _context.Chamado.Where(x => x.Id == chamadoId && x.UserId == userId);
+
+            return await query.AsNoTracking().FirstOrDefaultAsync();
 
 
         }
@@ -65,7 +73,7 @@ namespace Impacta.GAD.Repository.Repositories
             {
                 return null;
             }
-            return query.ToList();
+            return query.AsNoTracking().ToList();
         }
 
         public List<Chamado> GetTodosChamadosFromUser(long userId)
@@ -78,42 +86,42 @@ namespace Impacta.GAD.Repository.Repositories
             {
                 return null;
             }
-            return query.ToList();
+            return query.AsNoTracking().ToList();
         }
 
         public async Task<List<Chamado>> GetTodosAtivosChamados()
         {
             IQueryable<Chamado> query = _context.Chamado;
 
-            return await query.Where(x => x.IsAtivo == true).ToListAsync();
+            return await query.AsNoTracking().Where(x => x.IsAtivo == true).ToListAsync();
         }
 
         public async Task<List<Chamado>> GetTodosChamadosByBancoDados(long bancoDadosId)
         {
             IQueryable<Chamado> query = _context.Chamado;
 
-            return await query.Where(x => x.IsAtivo == true && x.BancoDadosId == bancoDadosId).ToListAsync();
+            return await query.AsNoTracking().Where(x => x.IsAtivo == true && x.BancoDadosId == bancoDadosId).ToListAsync();
         }
 
         public async Task<List<Chamado>> GetTodosChamadosByCliente(long clienteId)
         {
             IQueryable<Chamado> query = _context.Chamado;
 
-            return await query.Where(x => x.IsAtivo == true && x.ClienteId == clienteId).ToListAsync();
+            return await query.AsNoTracking().Where(x => x.IsAtivo == true && x.ClienteId == clienteId).ToListAsync();
         }
 
         public async Task<List<Chamado>> GetTodosChamadosByDns(long dnsId)
         {
             IQueryable<Chamado> query = _context.Chamado;
 
-            return await query.Where(x => x.IsAtivo == true && x.DNSId == dnsId).ToListAsync();
+            return await query.AsNoTracking().Where(x => x.IsAtivo == true && x.DNSId == dnsId).ToListAsync();
         }
 
         public async Task<List<Chamado>> GetTodosChamadosByNumero(string numero)
         {
             IQueryable<Chamado> query = _context.Chamado;
 
-            return await query.Where(x => x.IsAtivo == true && x.Numero.Contains(numero)).ToListAsync();
+            return await query.AsNoTracking().Where(x => x.IsAtivo == true && x.Numero.Contains(numero)).ToListAsync();
         }
 
 

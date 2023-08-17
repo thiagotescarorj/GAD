@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Projetos\\GAD\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.Domain\\Impacta.GAD.Domain.csproj": {}
+    "C:\\Users\\ttescaro\\Documents\\GitHub\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.Domain\\Impacta.GAD.Domain.csproj": {}
   },
   "projects": {
-    "D:\\Projetos\\GAD\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.Domain\\Impacta.GAD.Domain.csproj": {
+    "C:\\Users\\ttescaro\\Documents\\GitHub\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.Domain\\Impacta.GAD.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projetos\\GAD\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.Domain\\Impacta.GAD.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\ttescaro\\Documents\\GitHub\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.Domain\\Impacta.GAD.Domain.csproj",
         "projectName": "Impacta.GAD.Domain",
-        "projectPath": "D:\\Projetos\\GAD\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.Domain\\Impacta.GAD.Domain.csproj",
-        "packagesPath": "C:\\Users\\thiag\\.nuget\\packages\\",
-        "outputPath": "D:\\Projetos\\GAD\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.Domain\\obj\\",
+        "projectPath": "C:\\Users\\ttescaro\\Documents\\GitHub\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.Domain\\Impacta.GAD.Domain.csproj",
+        "packagesPath": "C:\\Users\\ttescaro\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ttescaro\\Documents\\GitHub\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\thiag\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ttescaro\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -61,7 +61,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

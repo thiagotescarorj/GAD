@@ -10,6 +10,7 @@ namespace Impacta.GAD.Domain.Models
 
         public bool IsAtivo { get; set; }
 
+        public long UsuarioCadastoId { get; set; }
         public DateTime DataHoraCadastro { get; set; }
 
         public DateTime? DataRecebimento { get; set; }

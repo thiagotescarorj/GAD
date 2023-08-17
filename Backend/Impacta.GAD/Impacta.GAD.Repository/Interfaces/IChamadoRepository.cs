@@ -14,6 +14,7 @@ namespace Impacta.GAD.Repository.Interfaces
         List<Chamado> GetTodosChamados();
         List<Chamado> GetTodosChamadosFromUser(long userId);
         Task<Chamado> GetChamadoById(long chamadoId);
+        Task<Chamado> GetChamadoByUser(long chamadoId, long userId);
         Task<List<Chamado>> GetTodosChamadosByNumero(string numero);
         Task<List<Chamado>> GetTodosChamadosByCliente(long clienteId);
         Task<List<Chamado>> GetTodosChamadosByDns(long dnsId);

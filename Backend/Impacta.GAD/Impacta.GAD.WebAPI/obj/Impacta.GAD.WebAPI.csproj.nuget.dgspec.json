@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Projetos\\GAD\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.WebAPI\\Impacta.GAD.WebAPI.csproj": {}
+    "C:\\Users\\ttescaro\\Documents\\GitHub\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.WebAPI\\Impacta.GAD.WebAPI.csproj": {}
   },
   "projects": {
-    "D:\\Projetos\\GAD\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.Application\\Impacta.GAD.Application.csproj": {
+    "C:\\Users\\ttescaro\\Documents\\GitHub\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.Application\\Impacta.GAD.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projetos\\GAD\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.Application\\Impacta.GAD.Application.csproj",
+        "projectUniqueName": "C:\\Users\\ttescaro\\Documents\\GitHub\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.Application\\Impacta.GAD.Application.csproj",
         "projectName": "Impacta.GAD.Application",
-        "projectPath": "D:\\Projetos\\GAD\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.Application\\Impacta.GAD.Application.csproj",
-        "packagesPath": "C:\\Users\\thiag\\.nuget\\packages\\",
-        "outputPath": "D:\\Projetos\\GAD\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.Application\\obj\\",
+        "projectPath": "C:\\Users\\ttescaro\\Documents\\GitHub\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.Application\\Impacta.GAD.Application.csproj",
+        "packagesPath": "C:\\Users\\ttescaro\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ttescaro\\Documents\\GitHub\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.Application\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\thiag\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ttescaro\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,11 +28,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\Projetos\\GAD\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.Domain\\Impacta.GAD.Domain.csproj": {
-                "projectPath": "D:\\Projetos\\GAD\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.Domain\\Impacta.GAD.Domain.csproj"
+              "C:\\Users\\ttescaro\\Documents\\GitHub\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.Domain\\Impacta.GAD.Domain.csproj": {
+                "projectPath": "C:\\Users\\ttescaro\\Documents\\GitHub\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.Domain\\Impacta.GAD.Domain.csproj"
               },
-              "D:\\Projetos\\GAD\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.Repository\\Impacta.GAD.Repository.csproj": {
-                "projectPath": "D:\\Projetos\\GAD\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.Repository\\Impacta.GAD.Repository.csproj"
+              "C:\\Users\\ttescaro\\Documents\\GitHub\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.Repository\\Impacta.GAD.Repository.csproj": {
+                "projectPath": "C:\\Users\\ttescaro\\Documents\\GitHub\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.Repository\\Impacta.GAD.Repository.csproj"
               }
             }
           }
@@ -80,21 +80,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Projetos\\GAD\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.Domain\\Impacta.GAD.Domain.csproj": {
+    "C:\\Users\\ttescaro\\Documents\\GitHub\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.Domain\\Impacta.GAD.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projetos\\GAD\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.Domain\\Impacta.GAD.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\ttescaro\\Documents\\GitHub\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.Domain\\Impacta.GAD.Domain.csproj",
         "projectName": "Impacta.GAD.Domain",
-        "projectPath": "D:\\Projetos\\GAD\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.Domain\\Impacta.GAD.Domain.csproj",
-        "packagesPath": "C:\\Users\\thiag\\.nuget\\packages\\",
-        "outputPath": "D:\\Projetos\\GAD\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.Domain\\obj\\",
+        "projectPath": "C:\\Users\\ttescaro\\Documents\\GitHub\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.Domain\\Impacta.GAD.Domain.csproj",
+        "packagesPath": "C:\\Users\\ttescaro\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ttescaro\\Documents\\GitHub\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\thiag\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ttescaro\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -141,21 +141,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Projetos\\GAD\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.Repository\\Impacta.GAD.Repository.csproj": {
+    "C:\\Users\\ttescaro\\Documents\\GitHub\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.Repository\\Impacta.GAD.Repository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projetos\\GAD\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.Repository\\Impacta.GAD.Repository.csproj",
+        "projectUniqueName": "C:\\Users\\ttescaro\\Documents\\GitHub\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.Repository\\Impacta.GAD.Repository.csproj",
         "projectName": "Impacta.GAD.Repository",
-        "projectPath": "D:\\Projetos\\GAD\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.Repository\\Impacta.GAD.Repository.csproj",
-        "packagesPath": "C:\\Users\\thiag\\.nuget\\packages\\",
-        "outputPath": "D:\\Projetos\\GAD\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.Repository\\obj\\",
+        "projectPath": "C:\\Users\\ttescaro\\Documents\\GitHub\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.Repository\\Impacta.GAD.Repository.csproj",
+        "packagesPath": "C:\\Users\\ttescaro\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ttescaro\\Documents\\GitHub\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.Repository\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\thiag\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ttescaro\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -169,8 +169,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\Projetos\\GAD\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.Domain\\Impacta.GAD.Domain.csproj": {
-                "projectPath": "D:\\Projetos\\GAD\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.Domain\\Impacta.GAD.Domain.csproj"
+              "C:\\Users\\ttescaro\\Documents\\GitHub\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.Domain\\Impacta.GAD.Domain.csproj": {
+                "projectPath": "C:\\Users\\ttescaro\\Documents\\GitHub\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.Domain\\Impacta.GAD.Domain.csproj"
               }
             }
           }
@@ -218,21 +218,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Projetos\\GAD\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.WebAPI\\Impacta.GAD.WebAPI.csproj": {
+    "C:\\Users\\ttescaro\\Documents\\GitHub\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.WebAPI\\Impacta.GAD.WebAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projetos\\GAD\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.WebAPI\\Impacta.GAD.WebAPI.csproj",
+        "projectUniqueName": "C:\\Users\\ttescaro\\Documents\\GitHub\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.WebAPI\\Impacta.GAD.WebAPI.csproj",
         "projectName": "Impacta.GAD.WebAPI",
-        "projectPath": "D:\\Projetos\\GAD\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.WebAPI\\Impacta.GAD.WebAPI.csproj",
-        "packagesPath": "C:\\Users\\thiag\\.nuget\\packages\\",
-        "outputPath": "D:\\Projetos\\GAD\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.WebAPI\\obj\\",
+        "projectPath": "C:\\Users\\ttescaro\\Documents\\GitHub\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.WebAPI\\Impacta.GAD.WebAPI.csproj",
+        "packagesPath": "C:\\Users\\ttescaro\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ttescaro\\Documents\\GitHub\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.WebAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\thiag\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ttescaro\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -240,18 +240,17 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\sdk\\7.0.306\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\Projetos\\GAD\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.Application\\Impacta.GAD.Application.csproj": {
-                "projectPath": "D:\\Projetos\\GAD\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.Application\\Impacta.GAD.Application.csproj"
+              "C:\\Users\\ttescaro\\Documents\\GitHub\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.Application\\Impacta.GAD.Application.csproj": {
+                "projectPath": "C:\\Users\\ttescaro\\Documents\\GitHub\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.Application\\Impacta.GAD.Application.csproj"
               },
-              "D:\\Projetos\\GAD\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.Repository\\Impacta.GAD.Repository.csproj": {
-                "projectPath": "D:\\Projetos\\GAD\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.Repository\\Impacta.GAD.Repository.csproj"
+              "C:\\Users\\ttescaro\\Documents\\GitHub\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.Repository\\Impacta.GAD.Repository.csproj": {
+                "projectPath": "C:\\Users\\ttescaro\\Documents\\GitHub\\GAD\\Backend\\Impacta.GAD\\Impacta.GAD.Repository\\Impacta.GAD.Repository.csproj"
               }
             }
           }
@@ -318,7 +317,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }
