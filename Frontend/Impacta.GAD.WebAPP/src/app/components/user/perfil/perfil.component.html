@@ -1,7 +1,7 @@
 <app-titulo [titulo]="'Perfil'"></app-titulo>
 <div class="card rounded shadow-sm">
 
-  <form (ngSubmit)="submit()" [formGroup]="perfilForm" #formDir="ngForm">
+  <form (ngSubmit)="onSubmit()" [formGroup]="perfilForm" #formDir="ngForm">
     <div class="row p-3">
       <div class="col-md-3 pt-1">
         <div class="card mb-3">
@@ -14,8 +14,8 @@
             </a>
           </div>
           <div class="card-body">
-            <div class="h4 text-center mb-3">@UserName</div>
-            <div class="h7 text-bold pb-1"><b>Nome:</b> Miracles Lee Cross</div>
+            <div class="h4 text-center mb-3">{{form.perfilUsuario.value}}</div>
+            <div class="h7 text-center text-bold pb-1"><b>Nome:</b> {{form.nome.value}} {{form.sobrenome.value}}</div>
             <!-- <div class="h7">
               Developer of web applications, JavaScript, PHP, Java, Python, Ruby, Java, Node.js,
               etc.
@@ -47,19 +47,19 @@
             <div class="form-group col-md-6">
               <label>Primeiro Nome</label>
               <input type="text"
-              formControlName="primeiroNome"
+              formControlName="nome"
               class="form-control"/>
-              <div *ngIf="primeiroNome.invalid && formDir.submitted" class="validation-erro">
-                <p *ngIf="primeiroNome.errors?.['required']">O campo Primeiro Nome é obrigatório</p>
+              <div *ngIf="form.nome.invalid && formDir.submitted" class="validation-erro">
+                <p *ngIf="form.nome.errors?.['required']">O campo Primeiro Nome é obrigatório</p>
               </div>
             </div>
             <div class="form-group col-md-6">
               <label>Último nome</label>
               <input type="text"
-              formControlName="ultimoNome"
+              formControlName="sobrenome"
               class="form-control"/>
-              <div *ngIf="ultimoNome.invalid && formDir.submitted" class="validation-erro">
-                <p *ngIf="ultimoNome.errors?.['required']">O campo Último Nome é obrigatório</p>
+              <div *ngIf="form.sobrenome.invalid && formDir.submitted" class="validation-erro">
+                <p *ngIf="form.sobrenome.errors?.['required']">O campo Último Nome é obrigatório</p>
               </div>
             </div>
           </div>
@@ -67,16 +67,24 @@
             <div class="form-group col-md-6">
               <label>E-mail</label>
               <input type="text"
-              formArrayName="email"
+              formControlName="email"
               class="form-control" />
-              <div *ngIf="email.invalid && formDir.submitted" class="validation-erro">
-                <p *ngIf="email.errors?.['required']">O campo Email é obrigatório</p>
+              <div *ngIf="form.email.invalid && formDir.submitted" class="validation-erro">
+                <p *ngIf="form.email.errors?.['required']">O campo Email é obrigatório</p>
               </div>
             </div>
-            <!-- <div class="form-group col-md-6">
-              <label>Telefone</label>
-              <input type="text" class="form-control" />
-            </div> -->
+            <div class="form-group col-md-6">
+              <label>Perfil</label>
+              <select formControlName="perfilUsuario" class="form-control"
+              [ngClass]="{ 'is-invalid': form.perfilUsuario.errors && form.perfilUsuario.touched }">
+              <option value="NaoInformado">Não Informado</option>
+              <option value="Administrador">Administrador</option>
+              <option value="Desenvolvedor">Desenvolvedor</option>
+            </select>
+            <div *ngIf="form.perfilUsuario.errors && form.perfilUsuario.touched" class="invalid-feedback">
+              <div *ngIf="form.perfilUsuario.errors.required">função é obrigatório é obrigatório</div>
+            </div>
+            </div>
           </div>
 
         </div>
@@ -97,31 +105,33 @@
         </div> -->
         <div>
           <h3 class="pt-3 border-bottom">Mudar Senha</h3>
-          <p>Caso mude de senha, preencha os campos abaixo:</p>
         </div>
-        <div class="form-row">
-          <div class="form-group col-sm">
-            <label>Senha</label>
+        <div class="row">
+          <div class="col-md-6">
+            <label>Password</label>
             <input type="password"
-            formControlName="senha"
-            class="form-control" />
-            <div *ngIf="senha.invalid && formDir.submitted" class="validation-erro">
-              <p *ngIf="senha.errors?.['required']">O campo Senha é obrigatório</p>
+            formControlName="password"
+            class="form-control"
+            autocomplete="new-password"
+           />
+            <div *ngIf="form.password.invalid && formDir.submitted" class="validation-erro">
+              <p *ngIf="form.password.errors?.['required']">O campo Password é obrigatório</p>
             </div>
-            <div *ngIf="senha.invalid && formDir.submitted" class="validation-erro">
-              <p *ngIf="senha.errors?.['minlength']">Deve conter no mínimo 6 caracteres</p>
+            <div *ngIf="form.password.invalid && formDir.submitted" class="validation-erro">
+              <p *ngIf="form.password.errors?.['minlength']">Deve conter no mínimo 6 caracteres</p>
             </div>
           </div>
-          <div class="form-group col-sm">
+          <div class="form-group col-md-6">
             <label>Confirmar Senha</label>
             <input type="password"
-            formControlName="confirmarSenha"
-            class="form-control" />
-            <div *ngIf="confirmarSenha.invalid && formDir.submitted" class="validation-erro">
-              <p *ngIf="confirmarSenha.errors?.['required']">O campo Senha é obrigatório</p>
+            formControlName="confirmarPassword"
+            class="form-control"
+            />
+            <div *ngIf="form.confirmarPassword.invalid && formDir.submitted" class="validation-erro">
+              <p *ngIf="form.confirmarPassword.errors?.['required']">O campo Password é obrigatório</p>
             </div>
-            <div *ngIf="confirmarSenha.invalid && formDir.submitted" class="validation-erro">
-              <p *ngIf="confirmarSenha.errors?.['informacaoDiferente']">As senhas não correspondem</p>
+            <div *ngIf="form.confirmarPassword.invalid && formDir.submitted" class="validation-erro">
+              <p *ngIf="form.confirmarPassword.errors?.['informacaoDiferente']">As passwords não correspondem</p>
             </div>
           </div>
         </div>

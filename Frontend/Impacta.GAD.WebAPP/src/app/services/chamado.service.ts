@@ -1,12 +1,13 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Chamado } from '../models/Chamado';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class ChamadoService {
 
-  baseURL = 'https://localhost:7276/api/Chamado';
+  baseURL = environment.apiURL  +  'api/Chamado';
 
   constructor(private http: HttpClient) { }
 

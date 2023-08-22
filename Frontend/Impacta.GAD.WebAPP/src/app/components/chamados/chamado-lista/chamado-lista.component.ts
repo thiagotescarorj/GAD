@@ -94,7 +94,8 @@ export class ChamadoListaComponent {
       private modalService: BsModalService,
       private toastr: ToastrService,
       private spinner: NgxSpinnerService,
-      private router: Router
+      private router: Router,
+      
       ){}
 
       public ngOnInit(): void{
@@ -162,11 +163,11 @@ export class ChamadoListaComponent {
         }
 
         editarChamado(id: number): void{
-          this.router.navigate([`chamados/editar/${id}`]);  
+          this.router.navigate([`chamados/editar/${id}`]);
         }
 
         detalheChamado(id: number): void{
-          this.router.navigate([`chamados/detalhe/${id}`]);  
+          this.router.navigate([`chamados/detalhe/${id}`]);
         }
 
         }

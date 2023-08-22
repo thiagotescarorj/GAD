@@ -100,7 +100,7 @@ namespace Impacta.GAD.Repository.Migrations
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Pefil")
+                    b.Property<int>("PerfilUsuario")
                         .HasColumnType("int");
 
                     b.Property<string>("PhoneNumber")

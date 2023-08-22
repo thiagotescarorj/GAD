@@ -37,9 +37,9 @@ namespace Impacta.GAD.Repository.Repositories
             return await query.ToListAsync();
         }
 
-        public async Task<User> GetUserByEmailAsync(string email)
+        public async Task<User> GetUserByUserNameAsync(string userName)
         {
-            IQueryable<User> query = _context.Users.Where(x => x.Email.ToLower() == email.ToLower()).AsNoTracking();
+            IQueryable<User> query = _context.Users.Where(x => x.UserName.ToLower() == userName.ToLower()).AsNoTracking();
             return await query.FirstOrDefaultAsync();
         }
 

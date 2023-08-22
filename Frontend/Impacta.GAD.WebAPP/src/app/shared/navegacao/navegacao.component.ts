@@ -1,3 +1,4 @@
+import { AccountService } from 'src/app/services/account.service';
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -11,12 +12,17 @@ export class NavegacaoComponent implements OnInit {
   corFundo: string = 'white';
 
 
-  constructor(private router: Router,
+
+  constructor(public accountService: AccountService,private router: Router,
               private renderer: Renderer2) { }
 
   ngOnInit() {
   }
-
+  logout():void{
+    this.accountService.logout();
+    this.router.navigateByUrl("user/login");
+  }
+y
   changeColor() {
     if (this.corFundo === 'white') {
       this.corFundo = 'gray';
@@ -27,8 +33,12 @@ export class NavegacaoComponent implements OnInit {
     this.renderer.setStyle(document.body, 'background-color', this.corFundo);
   }
 
-  showMenu(): boolean{
-    return this.router.url != '/user/login';
+  showMenu(): boolean {
+    const allowedUrls = ['/user/login', '/user/registration'];
+    if (allowedUrls.includes(this.router.url)){
+      return false;
+    }
+    return true;
   }
 
 }

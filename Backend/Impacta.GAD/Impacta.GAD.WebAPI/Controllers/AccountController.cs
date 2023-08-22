@@ -1,5 +1,7 @@
 ﻿using Impacta.GAD.Application.DTOs;
 using Impacta.GAD.Application.Interfaces;
+using Impacta.GAD.Repository.Interfaces;
+using Impacta.GAD.Repository.Repositories;
 using Impacta.GAD.WebAPI.Extentions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -14,6 +16,7 @@ namespace Impacta.GAD.WebAPI.Controllers
         
         private readonly IAccountService _accountService;
         private readonly ITokenService _tokenService;
+        private readonly IUsuarioRepository _usuarioRepository;
         //private readonly IUtil _util;
 
         private readonly string _destino = "Perfil";
@@ -33,8 +36,9 @@ namespace Impacta.GAD.WebAPI.Controllers
         {
             try
             {
-                var email = User.GetEmail();
-                var user = await _accountService.GetUserByEmailAsync(email);
+                var userName = User.GetUserName();
+                var user = await _accountService.GetUserByUserNameAsync(userName);
+                
                 return Ok(user);
             }
             catch (Exception ex)
@@ -58,6 +62,7 @@ namespace Impacta.GAD.WebAPI.Controllers
                     return Ok(new
                     {
                         email = user.Email,
+                        userName = user.UserName,
                         token = _tokenService.CreateToken(user).Result
                     });
 
@@ -76,7 +81,7 @@ namespace Impacta.GAD.WebAPI.Controllers
         {
             try
             {
-                var user = await _accountService.GetUserByEmailAsync(userLogin.Email);
+                var user = await _accountService.GetUserByUserNameAsync(userLogin.Email);
                 if (user == null) return Unauthorized("Usuário ou Senha está errado");
 
                 var result = await _accountService.CheckUserPasswordAsync(user, userLogin.Password);
@@ -85,6 +90,7 @@ namespace Impacta.GAD.WebAPI.Controllers
                 return Ok(new
                 {
                     email = user.Email,
+                    userName = user.UserName,
                     token = _tokenService.CreateToken(user).Result
                 });
             }
@@ -100,10 +106,12 @@ namespace Impacta.GAD.WebAPI.Controllers
         {
             try
             {
-                if (userUpdateDTO.Email != User.GetEmail())
+                var usuarioLogado = User.GetUserName();
+
+                if (userUpdateDTO.Email != usuarioLogado)
                     return Unauthorized("Usuário Inválido");
 
-                var user = await _accountService.GetUserByEmailAsync(User.GetEmail());
+                var user = await _accountService.GetUserByUserNameAsync(usuarioLogado);
                 if (user == null) return Unauthorized("Usuário Inválido");
 
                 var userReturn = await _accountService.UpdateAccount(userUpdateDTO);
@@ -112,6 +120,7 @@ namespace Impacta.GAD.WebAPI.Controllers
                 return Ok(new
                 {
                     email = userReturn.Email,
+                    userName = userReturn.UserName,
                     token = _tokenService.CreateToken(userReturn).Result
                 });
             }
@@ -127,7 +136,7 @@ namespace Impacta.GAD.WebAPI.Controllers
         {
             try
             {
-                var user = await _accountService.GetUserByEmailAsync(User.GetEmail());
+                var user = await _accountService.GetUserByUserNameAsync(User.GetUserName());
                 if (user == null) return NoContent();
 
                 var file = Request.Form.Files[0];

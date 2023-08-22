@@ -102,21 +102,21 @@ namespace Impacta.GAD.WebAPI.Controllers
             }
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetByIdFromUser(long id) {
-            try {
-                var chamado = await _chamadoService.GetChamadoFromUser(id, User.GetUserId());
-                if (chamado == null) {
-                    return NotFound($"O Chamado de ID: {id} não encontrado.");
-                } else {
-                    return Ok(chamado);
-                }
-            } catch (Exception ex) {
+        //[HttpGet("{id}")]
+        //public async Task<IActionResult> GetByIdFromUser(long id) {
+        //    try {
+        //        var chamado = await _chamadoService.GetChamadoFromUser(id, User.GetUserId());
+        //        if (chamado == null) {
+        //            return NotFound($"O Chamado de ID: {id} não encontrado.");
+        //        } else {
+        //            return Ok(chamado);
+        //        }
+        //    } catch (Exception ex) {
 
-                return this.StatusCode(StatusCodes.Status500InternalServerError,
-                                       $"Erro ao tentar recuperar Chamado de ID: {id}. Erro: {ex.Message}");
-            }
-        }
+        //        return this.StatusCode(StatusCodes.Status500InternalServerError,
+        //                               $"Erro ao tentar recuperar Chamado de ID: {id}. Erro: {ex.Message}");
+        //    }
+        //}
 
         [HttpGet("chamado/{numero}")]
         public async Task<IActionResult> GetByNumero(string numero)

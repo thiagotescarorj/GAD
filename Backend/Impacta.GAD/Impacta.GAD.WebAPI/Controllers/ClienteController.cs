@@ -18,7 +18,7 @@ namespace Impacta.GAD.WebAPI.Controllers
         }
 
 
-        [HttpGet]
+        [HttpGet("GetAll")]
         public async Task<IActionResult> GetAll()
         {
             try

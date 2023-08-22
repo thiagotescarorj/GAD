@@ -6,12 +6,12 @@ import { Cliente } from '../models/Cliente';
 @Injectable()
 export class ClienteService {
 
-  baseURL = 'https://localhost:7276/api/Cliente';
+  baseURL = 'https://localhost:7208/api/Cliente';
 
   constructor(private http: HttpClient) { }
 
   getTodosClientes(): Observable<Cliente[]>{
-    return this.http.get<Cliente[]>(this.baseURL);
+    return this.http.get<Cliente[]>(`${this.baseURL}/GetAll`);
   }
 
   getClienteById(id: number): Observable<Cliente>{

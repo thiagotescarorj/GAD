@@ -11,7 +11,7 @@ namespace Impacta.GAD.Application.Interfaces
     public interface IAccountService
     {
         Task<bool> UserExists(string username);
-        Task<UserUpdateDTO> GetUserByEmailAsync(string email);
+        Task<UserUpdateDTO> GetUserByUserNameAsync(string email);
         Task<SignInResult> CheckUserPasswordAsync(UserUpdateDTO userUpdateDTO, string passwoord);
         Task<UserUpdateDTO> CreateAccountAsync(UserDTO userDTO);
         Task<UserUpdateDTO> UpdateAccount(UserUpdateDTO userUpdateDTO);

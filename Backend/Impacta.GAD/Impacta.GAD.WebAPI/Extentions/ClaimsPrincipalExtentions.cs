@@ -4,7 +4,7 @@ namespace Impacta.GAD.WebAPI.Extentions
 {
     public static class ClaimsPrincipalExtentions
     {
-        public static string GetEmail(this ClaimsPrincipal user)
+        public static string GetUserName(this ClaimsPrincipal user)
         {
             return user.FindFirst(ClaimTypes.Name)?.Value;
         }

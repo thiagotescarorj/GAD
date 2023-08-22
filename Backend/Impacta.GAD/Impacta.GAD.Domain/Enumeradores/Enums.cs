@@ -8,6 +8,7 @@ namespace Impacta.GAD.Domain.Enumeradores
 {
     public enum EnumPefil
     {
+        NaoInformado = 0,
         Administrador = 1,
         Desenvolvedor = 2,
     }

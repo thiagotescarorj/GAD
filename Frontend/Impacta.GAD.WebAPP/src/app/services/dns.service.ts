@@ -6,7 +6,7 @@ import { DNS } from '../models/DNS';
 @Injectable()
 export class DNSService {
 
-  baseURL = 'https://localhost:7276/api/DNS';
+  baseURL = 'https://localhost:7208/api/DNS';
 
   constructor(private http: HttpClient) { }
 

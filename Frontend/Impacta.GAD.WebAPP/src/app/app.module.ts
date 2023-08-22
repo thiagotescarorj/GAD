@@ -1,6 +1,7 @@
+import { AccountService } from 'src/app/services/account.service';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
@@ -41,8 +42,8 @@ import { ChamadoFormComponent } from './components/chamados/chamado-form/chamado
 import { ChamadoEditarComponent } from './components/chamados/chamado-editar/chamado-editar.component';
 import { UserComponent } from './components/user/user.component';
 import { LoginComponent } from './components/user/login/login.component';
-import { RegisterComponent } from './components/user/register/register.component';
-import { PerfilComponent } from './components/user/perfil/perfil/perfil.component';
+import { RegistrationComponent } from './components/user/registration/registration.component';
+import { PerfilComponent } from './components/user/perfil/perfil.component';
 import { ClienteDetalheComponent } from './components/clientes/cliente-detalhe/cliente-detalhe.component';
 import { ClienteEditarComponent } from './components/clientes/cliente-editar/cliente-editar.component';
 import { ClienteFormComponent } from './components/clientes/cliente-form/cliente-form.component';
@@ -55,6 +56,10 @@ import { BancoDadosListaComponent } from './components/bancosDados/banco-dados-l
 import { BancoDadosEditarComponent } from './components/bancosDados/banco-dados-editar/banco-dados-editar.component';
 import { BancoDadosDetalheComponent } from './components/bancosDados/banco-dados-detalhe/banco-dados-detalhe.component';
 import { BancoDadosFormComponent } from './components/bancosDados/banco-dados-form/banco-dados-form.component';
+import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { HomeComponent } from './components/home/home.component';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+
 
 
 defineLocale('pt-br', ptBrLocale);
@@ -77,8 +82,9 @@ defineLocale('pt-br', ptBrLocale);
     ChamadoFormComponent,
     ChamadoEditarComponent,
     UserComponent,
+    HomeComponent,
     LoginComponent,
-    RegisterComponent,
+    RegistrationComponent,
     ClienteDetalheComponent,
     ClienteEditarComponent,
     ClienteFormComponent,
@@ -105,19 +111,26 @@ defineLocale('pt-br', ptBrLocale);
     ModalModule.forRoot(),
     ToastrModule.forRoot({
       timeOut: 2000,
-      positionClass: 'toast-bottom-right',
+      positionClass: 'toast-top-right',
       preventDuplicates: true,
       progressBar: true
     }),
     NgxSpinnerModule,
     BsDatepickerModule.forRoot(),
+    TabsModule.forRoot(),
 
-    
+
   ],
 
-  providers: [ChamadoService, ClienteService, DNSService, BancoDadosService],
-  bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  providers: [
+    AccountService,
+    ChamadoService,
+    ClienteService,
+    DNSService,
+    BancoDadosService,
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
 
