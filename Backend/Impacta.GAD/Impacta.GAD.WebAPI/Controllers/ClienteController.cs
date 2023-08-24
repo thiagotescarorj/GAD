@@ -1,5 +1,6 @@
 ﻿using Impacta.GAD.Application.DTOs;
 using Impacta.GAD.Application.Interfaces;
+using Impacta.GAD.Repository.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,11 +20,11 @@ namespace Impacta.GAD.WebAPI.Controllers
 
 
         [HttpGet("GetAll")]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery]PageParams pageParams)
         {
             try
             {
-                var clientes = await _clienteService.GetTodosClientes();
+                var clientes = await _clienteService.GetTodosClientes(pageParams);
                 if (clientes == null)
                 {
                     return NotFound("Nenhum Cliente encontrado.");

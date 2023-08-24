@@ -2,6 +2,7 @@
 using Impacta.GAD.Application.DTOs;
 using Impacta.GAD.Application.Interfaces;
 using Impacta.GAD.Domain.Models;
+using Impacta.GAD.Repository.Helpers;
 using Impacta.GAD.Repository.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -92,15 +93,20 @@ namespace Impacta.GAD.Application.Services
                 throw new Exception(ex.Message);
             }
         }
-        public async Task<List<ClienteDTO>> GetTodosClientes()
+        public async Task<List<ClienteDTO>> GetTodosClientes(PageParams pageParams)
         {
             try
             {
-                var clientes = await _clienteRepository.GetTodosClientes();
+                var clientes = await _clienteRepository.GetTodosClientes(pageParams);
 
                 if (clientes == null) return null;
 
-                var retorno = _mapper.Map<List<ClienteDTO>>(clientes);
+                var retorno = _mapper.Map<PageList<ClienteDTO>>(clientes);
+
+                retorno.CurrentPage = clientes.CurrentPage;
+                retorno.TotalPages = clientes.TotalPages;
+                retorno.PageSize = clientes.PageSize;
+                retorno.TotalCount = clientes.TotalCount;
 
                 return retorno;
             }

@@ -1,5 +1,6 @@
 ﻿using Impacta.GAD.Domain.Models;
 using Impacta.GAD.Repository.DataContext;
+using Impacta.GAD.Repository.Helpers;
 using Impacta.GAD.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -45,10 +46,12 @@ namespace Impacta.GAD.Repository.Repositories
             return await query.FirstOrDefaultAsync();
         }
 
-        public async Task<List<Cliente>> GetTodosClientes()
+        public async Task<PageList<Cliente>> GetTodosClientes(PageParams pageParams)
         {
-            IQueryable<Cliente> query = _context.Cliente.AsNoTracking();
-            return await query.ToListAsync();
+            IQueryable<Cliente> query = _context.Cliente
+                                             .AsNoTracking()
+                                             .Where(x => x.Nome.ToLower().Contains(pageParams.Term.ToLower()));
+            return await PageList<Cliente>.CreateAsync(query, pageParams.PageNumber, pageParams.PageSize);
         }
 
         public async Task<List<Cliente>> GetTodosAtivosClientes()
