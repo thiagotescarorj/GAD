@@ -84,7 +84,7 @@ namespace Impacta.GAD.WebAPI.Controllers
         {
             try
             {
-                var chamado = await _chamadoService.GetChamadoById(id);
+                var chamado = await _chamadoService.GetChamadoByIdAsync(User.GetUserId(), id, true);
                 if (chamado == null)
                 {
                     return NotFound($"O Chamado de ID: {id} não encontrado.");
@@ -99,6 +99,58 @@ namespace Impacta.GAD.WebAPI.Controllers
 
                 return this.StatusCode(StatusCodes.Status500InternalServerError,
                                        $"Erro ao tentar recuperar Chamado de ID: {id}. Erro: {ex.Message}");
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Post(ChamadoDTO chamado) {
+            try {
+                var usuarioLogadoId = User.GetUserId();
+                chamado.UserId = usuarioLogadoId;
+                var Chamado = await _chamadoService.AdicionarChamado(chamado, usuarioLogadoId);
+                if (Chamado == null) {
+                    return NotFound($"Erro ao tentar adcionar chamado.");
+                } else {
+                    return Ok(chamado);
+                }
+            } catch (Exception ex) {
+
+                return this.StatusCode(StatusCodes.Status500InternalServerError,
+                                       $"Erro ao tentar adcionar Chamado. Erro: {ex.Message}");
+            }
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(long id, ChamadoDTO model) {
+            try {
+                var chamado = await _chamadoService.GetChamadoByIdAsync(User.GetUserId(), id, true);
+                if (chamado == null) {
+                    return NotFound($"Erro ao tentar adcionar chamado.");
+                }
+
+                    return Ok(chamado);
+               
+            } catch (Exception ex) {
+
+                return this.StatusCode(StatusCodes.Status500InternalServerError,
+                                       $"Erro ao tentar atualizar Chamado ID:{id}. Erro: {ex.Message}");
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(long id) {
+            try {
+                var chamado = await _chamadoService.GetChamadoByIdAsync(User.GetUserId(), id, true);
+                if (chamado == null) return NoContent();
+
+                if (await _chamadoService.ExcluirChamado(User.GetUserId(), id)) {
+                    return Ok(new { message = "Deletado" });
+                } else {
+                    throw new Exception("Ocorreu um problem não específico ao tentar deletar Chamado.");
+                }
+            } catch (Exception ex) {
+                return this.StatusCode(StatusCodes.Status500InternalServerError,
+                    $"Erro ao tentar deletar chamados. Erro: {ex.Message}");
             }
         }
 
@@ -118,186 +170,114 @@ namespace Impacta.GAD.WebAPI.Controllers
         //    }
         //}
 
-        [HttpGet("chamado/{numero}")]
-        public async Task<IActionResult> GetByNumero(string numero)
-        {
-            try
-            {
-                var chamado = await _chamadoService.GetTodosChamadosByNumero(numero);
-                if (chamado == null)
-                {
-                    return NotFound($"O Chamado de número: {numero} não encontrado.");
-                }
-                else
-                {
-                    return Ok(chamado);
-                }
-            }
-            catch (Exception ex)
-            {
+        //[HttpGet("chamado/{numero}")]
+        //public async Task<IActionResult> GetByNumero(string numero)
+        //{
+        //    try
+        //    {
+        //        var chamado = await _chamadoService.GetTodosChamadosByNumero(numero);
+        //        if (chamado == null)
+        //        {
+        //            return NotFound($"O Chamado de número: {numero} não encontrado.");
+        //        }
+        //        else
+        //        {
+        //            return Ok(chamado);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
 
-                return this.StatusCode(StatusCodes.Status500InternalServerError,
-                                       $"Erro ao tentar recuperar Chamado de número: {numero}. Erro: {ex.Message}");
-            }
-        }
+        //        return this.StatusCode(StatusCodes.Status500InternalServerError,
+        //                               $"Erro ao tentar recuperar Chamado de número: {numero}. Erro: {ex.Message}");
+        //    }
+        //}
 
-        [HttpGet("cliente/{clienteId}")]
-        public async Task<IActionResult> GetByCliente(long clienteId)
-        {
-            try
-            {
-                var cliente = await _clienteService.GetClienteById(clienteId);
-                if (cliente == null)
-                {
-                    return NotFound($"Cliente de ID: {clienteId} não encontrado");
-                }
-                var chamado = await _chamadoService.GetTodosChamadosByCliente(clienteId);
-                if (chamado == null)
-                {
-                    return NotFound($"O Chamado vinculado ao cliente: {cliente.Nome} não encontrado.");
-                }
-                else
-                {
-                    return Ok(chamado);
-                }
-            }
-            catch (Exception ex)
-            {
+        //[HttpGet("cliente/{clienteId}")]
+        //public async Task<IActionResult> GetByCliente(long clienteId)
+        //{
+        //    try
+        //    {
+        //        var cliente = await _clienteService.GetClienteById(clienteId);
+        //        if (cliente == null)
+        //        {
+        //            return NotFound($"Cliente de ID: {clienteId} não encontrado");
+        //        }
+        //        var chamado = await _chamadoService.GetTodosChamadosByCliente(clienteId);
+        //        if (chamado == null)
+        //        {
+        //            return NotFound($"O Chamado vinculado ao cliente: {cliente.Nome} não encontrado.");
+        //        }
+        //        else
+        //        {
+        //            return Ok(chamado);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
 
-                return this.StatusCode(StatusCodes.Status500InternalServerError,
-                                       $"Erro ao tentar recuperar Chamado vinculado ao cliente: {clienteId}. Erro: {ex.Message}");
-            }
-        }
+        //        return this.StatusCode(StatusCodes.Status500InternalServerError,
+        //                               $"Erro ao tentar recuperar Chamado vinculado ao cliente: {clienteId}. Erro: {ex.Message}");
+        //    }
+        //}
 
-        [HttpGet("dns/{dnsId}")]
-        public async Task<IActionResult> GetByDNS(long dnsId)
-        {
-            try
-            {
-                var dns = await _dnsService.GetDNSById(dnsId);
-                if (dns == null)
-                {
-                    return NotFound($"DNS de ID: {dnsId} não encontrado");
-                }
-                var chamado = await _chamadoService.GetTodosChamadosByCliente(dnsId);
-                if (chamado == null)
-                {
-                    return NotFound($"O Chamado vinculado ao dns: {dns.Nome} não encontrado.");
-                }
-                else
-                {
-                    return Ok(chamado);
-                }
-            }
-            catch (Exception ex)
-            {
+        //[HttpGet("dns/{dnsId}")]
+        //public async Task<IActionResult> GetByDNS(long dnsId)
+        //{
+        //    try
+        //    {
+        //        var dns = await _dnsService.GetDNSById(dnsId);
+        //        if (dns == null)
+        //        {
+        //            return NotFound($"DNS de ID: {dnsId} não encontrado");
+        //        }
+        //        var chamado = await _chamadoService.GetTodosChamadosByCliente(dnsId);
+        //        if (chamado == null)
+        //        {
+        //            return NotFound($"O Chamado vinculado ao dns: {dns.Nome} não encontrado.");
+        //        }
+        //        else
+        //        {
+        //            return Ok(chamado);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
 
-                return this.StatusCode(StatusCodes.Status500InternalServerError,
-                                       $"Erro ao tentar recuperar Chamado vinculado ao dns: {dnsId}. Erro: {ex.Message}");
-            }
-        }
+        //        return this.StatusCode(StatusCodes.Status500InternalServerError,
+        //                               $"Erro ao tentar recuperar Chamado vinculado ao dns: {dnsId}. Erro: {ex.Message}");
+        //    }
+        //}
 
-        [HttpGet("bancoDados/{bancoDadosId}")]
-        public async Task<IActionResult> GetByBancoDados(long bancoDadosId)
-        {
-            try
-            {
-                var bancoDados = await _bancoDados.GetBancoDadosById(bancoDadosId);
-                if (bancoDados == null)
-                {
-                    return NotFound($"Banco de Dados de ID: {bancoDadosId} não encontrado");
-                }
-                var chamado = await _chamadoService.GetTodosChamadosByCliente(bancoDadosId);
-                if (chamado == null)
-                {
-                    return NotFound($"O Chamado de vinculado ao banco de dados: {bancoDados.Nome} não encontrado.");
-                }
-                else
-                {
-                    return Ok(chamado);
-                }
-            }
-            catch (Exception ex)
-            {
+        //[HttpGet("bancoDados/{bancoDadosId}")]
+        //public async Task<IActionResult> GetByBancoDados(long bancoDadosId)
+        //{
+        //    try
+        //    {
+        //        var bancoDados = await _bancoDados.GetBancoDadosById(bancoDadosId);
+        //        if (bancoDados == null)
+        //        {
+        //            return NotFound($"Banco de Dados de ID: {bancoDadosId} não encontrado");
+        //        }
+        //        var chamado = await _chamadoService.GetTodosChamadosByCliente(bancoDadosId);
+        //        if (chamado == null)
+        //        {
+        //            return NotFound($"O Chamado de vinculado ao banco de dados: {bancoDados.Nome} não encontrado.");
+        //        }
+        //        else
+        //        {
+        //            return Ok(chamado);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
 
-                return this.StatusCode(StatusCodes.Status500InternalServerError,
-                                       $"Erro ao tentar recuperar Chamado de número: {bancoDadosId}. Erro: {ex.Message}");
-            }
-        }
+        //        return this.StatusCode(StatusCodes.Status500InternalServerError,
+        //                               $"Erro ao tentar recuperar Chamado de número: {bancoDadosId}. Erro: {ex.Message}");
+        //    }
+        //}
 
-        [HttpPost]
-        public async Task<IActionResult> Post(ChamadoDTO chamado)
-        {
-            try
-            {
-                var usuarioLogadoId = User.GetUserId();
-                chamado.UserId = usuarioLogadoId;
-                var Chamado = await _chamadoService.AdicionarChamado(chamado, usuarioLogadoId);
-                if (Chamado == null)
-                {
-                    return NotFound($"Erro ao tentar adcionar chamado.");
-                }
-                else
-                {
-                    return Ok(chamado);
-                }
-            }
-            catch (Exception ex)
-            {
 
-                return this.StatusCode(StatusCodes.Status500InternalServerError,
-                                       $"Erro ao tentar adcionar Chamado. Erro: {ex.Message}");
-            }
-        }
-
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Put(long id, ChamadoDTO model)
-        {
-            try
-            {
-                model.UserId = User.GetUserId();
-                var chamado = await _chamadoService.GetChamadoById(id);
-                if (chamado == null)
-                {
-                    return NotFound($"Erro ao tentar adcionar chamado.");
-                }
-                else
-                {
-                    await _chamadoService.AtualizarChamado(id, model);
-
-                    return Ok(chamado);
-                }
-            }
-            catch (Exception ex)
-            {
-
-                return this.StatusCode(StatusCodes.Status500InternalServerError,
-                                       $"Erro ao tentar atualizar Chamado ID:{id}. Erro: {ex.Message}");
-            }
-        }
-
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(long id)
-        {
-            try
-            {
-                if (await _chamadoService.ExcluirChamado(id))
-                {
-                    return Ok(new { message = $"Chamado ID:{id} deletado" });
-                }
-                else
-                {
-                    return BadRequest($"Chamado ID:{id} não deletado");
-
-                }
-            }
-            catch (Exception ex)
-            {
-
-                return this.StatusCode(StatusCodes.Status500InternalServerError,
-                                       $"Erro ao tentar excluir Chamado ID:{id}. Erro: {ex.Message}");
-            }
-        }
 
     }
 

@@ -59,6 +59,8 @@ import { BancoDadosFormComponent } from './components/bancosDados/banco-dados-fo
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { HomeComponent } from './components/home/home.component';
 import { TabsModule } from 'ngx-bootstrap/tabs';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { PerfilDetalheComponent } from './components/user/perfil/perfil-detalhe/perfil-detalhe.component';
 
 
 
@@ -73,6 +75,7 @@ defineLocale('pt-br', ptBrLocale);
     DNSsComponent,
     BancosDadosComponent,
     PerfilComponent,
+    PerfilDetalheComponent,
     NavegacaoComponent,
     TituloComponent,
     DashboardComponent,
@@ -108,6 +111,7 @@ defineLocale('pt-br', ptBrLocale);
     CollapseModule.forRoot(),
     TooltipModule.forRoot(),
     BsDropdownModule.forRoot(),
+    PaginationModule.forRoot(),
     ModalModule.forRoot(),
     ToastrModule.forRoot({
       timeOut: 2000,

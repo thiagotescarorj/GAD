@@ -298,6 +298,35 @@ namespace Impacta.GAD.Repository.Migrations
                     b.ToTable("DNS");
                 });
 
+            modelBuilder.Entity("Impacta.GAD.Domain.Models.Projeto", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+
+                    b.Property<long?>("ChamadoId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Nome")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("URL")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long?>("UsuarioId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ChamadoId");
+
+                    b.HasIndex("UsuarioId");
+
+                    b.ToTable("Projetos");
+                });
+
             modelBuilder.Entity("Impacta.GAD.Domain.Models.Usuario", b =>
                 {
                     b.Property<long>("Id")
@@ -317,6 +346,29 @@ namespace Impacta.GAD.Repository.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Usuario");
+                });
+
+            modelBuilder.Entity("Impacta.GAD.Domain.Models.UsuarioChamado", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+
+                    b.Property<long>("ChamadoId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("UsuarioId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ChamadoId");
+
+                    b.HasIndex("UsuarioId");
+
+                    b.ToTable("UsuarioChamados");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<long>", b =>
@@ -483,6 +535,21 @@ namespace Impacta.GAD.Repository.Migrations
                     b.Navigation("Cliente");
                 });
 
+            modelBuilder.Entity("Impacta.GAD.Domain.Models.Projeto", b =>
+                {
+                    b.HasOne("Impacta.GAD.Domain.Models.Chamado", "Chamado")
+                        .WithMany("Projetos")
+                        .HasForeignKey("ChamadoId");
+
+                    b.HasOne("Impacta.GAD.Domain.Models.Usuario", "Usuario")
+                        .WithMany("Projeto")
+                        .HasForeignKey("UsuarioId");
+
+                    b.Navigation("Chamado");
+
+                    b.Navigation("Usuario");
+                });
+
             modelBuilder.Entity("Impacta.GAD.Domain.Models.Usuario", b =>
                 {
                     b.HasOne("Impacta.GAD.Domain.Identity.User", "User")
@@ -492,6 +559,23 @@ namespace Impacta.GAD.Repository.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Impacta.GAD.Domain.Models.UsuarioChamado", b =>
+                {
+                    b.HasOne("Impacta.GAD.Domain.Models.Chamado", "Chamado")
+                        .WithMany("UsuarioChamados")
+                        .HasForeignKey("ChamadoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Impacta.GAD.Domain.Models.Usuario", "Usuario")
+                        .WithMany("UsuarioChamados")
+                        .HasForeignKey("UsuarioId");
+
+                    b.Navigation("Chamado");
+
+                    b.Navigation("Usuario");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<long>", b =>
@@ -538,6 +622,20 @@ namespace Impacta.GAD.Repository.Migrations
             modelBuilder.Entity("Impacta.GAD.Domain.Identity.User", b =>
                 {
                     b.Navigation("UserRoles");
+                });
+
+            modelBuilder.Entity("Impacta.GAD.Domain.Models.Chamado", b =>
+                {
+                    b.Navigation("Projetos");
+
+                    b.Navigation("UsuarioChamados");
+                });
+
+            modelBuilder.Entity("Impacta.GAD.Domain.Models.Usuario", b =>
+                {
+                    b.Navigation("Projeto");
+
+                    b.Navigation("UsuarioChamados");
                 });
 #pragma warning restore 612, 618
         }

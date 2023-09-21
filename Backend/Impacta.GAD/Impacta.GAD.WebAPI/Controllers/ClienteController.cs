@@ -1,6 +1,7 @@
 ﻿using Impacta.GAD.Application.DTOs;
 using Impacta.GAD.Application.Interfaces;
 using Impacta.GAD.Repository.Helpers;
+using Impacta.GAD.WebAPI.Extentions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -31,6 +32,8 @@ namespace Impacta.GAD.WebAPI.Controllers
                 }
                 else
                 {
+                    Response.AddPagination(clientes.CurrentPage, clientes.PageSize, clientes.TotalCount, clientes.TotalPages);
+
                     return Ok(clientes);
                 }
             }
@@ -66,28 +69,28 @@ namespace Impacta.GAD.WebAPI.Controllers
             }
         }
 
-        [HttpGet("{nome:alpha}")]
-        public async Task<IActionResult> GetByNome(string nome)
-        {
-            try
-            {
-                var cliente = await _clienteService.GetTodosClientesByNome(nome);
-                if (cliente == null)
-                {
-                    return NotFound($"O Cliente de nome: {nome} não encontrado.");
-                }
-                else
-                {
-                    return Ok(cliente);
-                }
-            }
-            catch (Exception ex)
-            {
+        //[HttpGet("{nome:alpha}")]
+        //public async Task<IActionResult> GetByNome(string nome)
+        //{
+        //    try
+        //    {
+        //        var cliente = await _clienteService.GetTodosClientesByNome(nome);
+        //        if (cliente == null)
+        //        {
+        //            return NotFound($"O Cliente de nome: {nome} não encontrado.");
+        //        }
+        //        else
+        //        {
+        //            return Ok(cliente);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
 
-                return this.StatusCode(StatusCodes.Status500InternalServerError,
-                                       $"Erro ao tentar recuperar Cliente de nome: {nome}. Erro: {ex.Message}");
-            }
-        }
+        //        return this.StatusCode(StatusCodes.Status500InternalServerError,
+        //                               $"Erro ao tentar recuperar Cliente de nome: {nome}. Erro: {ex.Message}");
+        //    }
+        //}
 
 
 

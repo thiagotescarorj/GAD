@@ -16,8 +16,8 @@ export class ClienteEditarComponent {
   cliente = {} as Cliente;
   clienteEditarForm!: FormGroup;
   router2: Router;
-  
-  
+
+
   constructor(private fb: FormBuilder,
     private localeService: BsLocaleService,
     private router: ActivatedRoute,
@@ -28,17 +28,17 @@ export class ClienteEditarComponent {
     {
       this.localeService.use('pt-br');
       this.router2 = router2;
-      
+
     }
-    
+
     public salvar(): void{
       this.spinner.show();
-      
-      
+
+
       this.cliente = {... this.clienteEditarForm.value};
-      
-      
-      this.clienteService.put(this.cliente.id, this.cliente).subscribe(
+
+
+      this.clienteService.put(this.cliente).subscribe(
         () => this.toastr.success("Banco de Dados salvo com sucesso!", "Sucesso")
                          .onHidden.subscribe(() => {setTimeout(window.location.href ='/cliente/lista', 2000)}),
         (error: any) => {
@@ -48,13 +48,13 @@ export class ClienteEditarComponent {
         },
         () => this.spinner.hide()
         );
-        
+
       }
-      
-      
+
+
       public carregamentoCliente(): void{
         const clienteIdParam = this.router.snapshot.paramMap.get('id');
-        
+
         if(clienteIdParam != null){
           this.spinner.show();
           this.clienteService.getClienteById(+clienteIdParam).subscribe(
@@ -72,43 +72,43 @@ export class ClienteEditarComponent {
               }
             });
           }
-          
+
         }
-        
+
         ngOnInit(): void {
           this.carregamentoCliente();
           this.clienteEditarForm = new FormGroup({
             id: new FormControl(''),
             nome: new FormControl('',[Validators.required]),
-            isAtivo: new FormControl('',[Validators.required]),                        
+            isAtivo: new FormControl('',[Validators.required]),
           });
         }
-        
+
         get nome(){
           return this.clienteEditarForm.get('nome')!;
         }
-        
+
         get clienteId(){
           return this.clienteEditarForm.get('clienteId')!;
         }
-        
+
         get isAtivo(){
           return this.clienteEditarForm.get('isAtivo')!;
         }
-        
-        
+
+
         submit(){
           if(this.clienteEditarForm.invalid){
             return;
           }
           console.log('Atualizado Formulário')
         }
-        
+
         resetForm(event: any): void{
           event.preventDefault();
           this.clienteEditarForm.reset();
         }
-        
+
         get bsConfig(): any{
           return {
             adaptivePosition: true,
@@ -117,7 +117,7 @@ export class ClienteEditarComponent {
             showWeekNumbers: false,
           }
         }
-        
-      
+
+
 
 }

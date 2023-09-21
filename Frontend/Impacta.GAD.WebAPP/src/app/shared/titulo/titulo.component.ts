@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-titulo',
   templateUrl: './titulo.component.html',
@@ -12,13 +13,15 @@ export class TituloComponent implements OnInit {
   @Input() subtitulo = 'GAD - Gerenciador da Área de Desenvolvimento';
   @Input() botaoListar = false;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+    //private location: Location
+    ) { }
 
-  ngOnInit() {
+    ngOnInit() {
+    }
+
+    listar(): void{
+      window.location.reload()
+    }
+
   }
-
-  listar(): void{
-    this.router.navigate([`/${this.titulo.toLocaleLowerCase()}/lista`])
-  }
-
-}

@@ -7,7 +7,8 @@
         type="text"
         class="form-control"
         placeholder="Buscar"
-        [(ngModel)]="filtroLista">
+        (input)="filtrarClientes($event.target)"
+        >
       </div>
     </div>
 
@@ -31,8 +32,8 @@
       </tr>
 
     </thead>
-    <tbody *ngIf="Clientes">
-      <tr *ngFor="let cliente of ClientesFiltrados" (click)="editarCliente(cliente.id)" style="cursor:pointer">
+    <tbody *ngIf="clientes">
+      <tr *ngFor="let cliente of clientes" (click)="detalheCliente(cliente.id)" style="cursor:pointer">
         <td>{{cliente.id}}</td>
         <td>{{cliente.nome}}</td>
         <td>{{cliente.isAtivo ? 'Ativo' : 'Inatvo'}}</td>
@@ -44,13 +45,13 @@
           <button type="button" class="btn btn-primary btn-sm me-2 " title="Editar" (click)="editarCliente(cliente.id)">
             <i class="fas fa-edit"></i>
           </button>
-          <button type="button" class="btn btn-danger btn-sm" title="Excluir" (click)="openModal($event,template,cliente.nome, cliente.id)">
+          <button type="button" class="btn btn-danger btn-sm" title="Excluir" (click)="openModal($event,template,cliente.id)">
             <i class="fa fa-trash"></i>
           </button>
         </td>
       </tr>
     </tbody>
-    <tfoot *ngIf="!Clientes">
+    <tfoot *ngIf="!clientes">
       <tr class="text-center">
         <td colspan="8">
           <h4>Nenhum cliente encontrado.</h4>
@@ -58,6 +59,27 @@
       </tr>
     </tfoot>
   </table>
+
+  <div class="d-flex justify-content-center">
+
+    <pagination
+      [boundaryLinks]="true"
+
+      [totalItems]="pagination.totalItems"
+      [itemsPerPage]="pagination.itemsPerPage"
+      [(ngModel)]="pagination.currentPage"
+      (pageChanged)="pageChanged($event)"
+
+      pageBtnClass="btn"
+      previousText="&lsaquo;"
+      nextText="&rsaquo;"
+      firstText="&laquo;"
+      lastText="&raquo;">
+
+    </pagination>
+
+  </div>
+
 </div>
 
 <!-- Modal -->

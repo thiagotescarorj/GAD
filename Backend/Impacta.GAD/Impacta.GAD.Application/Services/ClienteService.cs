@@ -93,7 +93,7 @@ namespace Impacta.GAD.Application.Services
                 throw new Exception(ex.Message);
             }
         }
-        public async Task<List<ClienteDTO>> GetTodosClientes(PageParams pageParams)
+        public async Task<PageList<ClienteDTO>> GetTodosClientes(PageParams pageParams)
         {
             try
             {
@@ -134,21 +134,21 @@ namespace Impacta.GAD.Application.Services
         }
 
 
-        public async Task<List<ClienteDTO>> GetTodosClientesByNome(string nome)
-        {
-            try
-            {
-                var clientes = await _clienteRepository.GetTodosClientesByNome(nome);
-                if (clientes == null) return null;
+        //public async Task<List<ClienteDTO>> GetTodosClientesByNome(string nome)
+        //{
+        //    try
+        //    {
+        //        var clientes = await _clienteRepository.GetTodosClientesByNome(nome);
+        //        if (clientes == null) return null;
 
-                var retorno = _mapper.Map<List<ClienteDTO>>(clientes);
+        //        var retorno = _mapper.Map<List<ClienteDTO>>(clientes);
 
-                return retorno;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
+        //        return retorno;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new Exception(ex.Message);
+        //    }
+        //}
     }
 }

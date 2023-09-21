@@ -13,5 +13,8 @@ namespace Impacta.GAD.Domain.Models
         public bool IsAtivo { get; set; }
         public long UserId { get; set; }
         public User User { get; set; }
+        public IEnumerable<Projeto> Projeto { get; set; }
+        public IEnumerable<UsuarioChamado> UsuarioChamados { get; set; }
+
     }
 }

@@ -70,58 +70,58 @@ namespace Impacta.GAD.WebAPI.Controllers
             }
         }
 
-        [HttpGet]
-        [Route("GetByNome")]
-        public async Task<IActionResult> GetByNome(string nome)
-        {
-            try
-            {
-                var bancoDados = await _bancoDadosService.GetTodosBancoDadosByNome(nome);
-                if (bancoDados == null)
-                {
-                    return NotFound($"O Banco de Dados de nome: {nome} não encontrado.");
-                }
-                else
-                {
-                    return Ok(bancoDados);
-                }
-            }
-            catch (Exception ex)
-            {
+        //[HttpGet]
+        //[Route("GetByNome")]
+        //public async Task<IActionResult> GetByNome(string nome)
+        //{
+        //    try
+        //    {
+        //        var bancoDados = await _bancoDadosService.GetTodosBancoDadosByNome(nome);
+        //        if (bancoDados == null)
+        //        {
+        //            return NotFound($"O Banco de Dados de nome: {nome} não encontrado.");
+        //        }
+        //        else
+        //        {
+        //            return Ok(bancoDados);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
 
-                return this.StatusCode(StatusCodes.Status500InternalServerError,
-                                       $"Erro ao tentar recuperar Banco de Dados de nome: {nome}. Erro: {ex.Message}");
-            }
-        }
+        //        return this.StatusCode(StatusCodes.Status500InternalServerError,
+        //                               $"Erro ao tentar recuperar Banco de Dados de nome: {nome}. Erro: {ex.Message}");
+        //    }
+        //}
 
-        [HttpGet]
-        [Route("GetByClienteId")]
-        public async Task<IActionResult> GetByCliente(long clienteId)
-        {
-            try
-            {
-                var cliente = await _clienteService.GetClienteById(clienteId);
-                if (cliente == null)
-                {
-                    return NotFound($"Cliente de ID: {clienteId} não encontrado");
-                }
-                var bancoDados = await _bancoDadosService.GetTodosBancoDadosByCliente(clienteId);
-                if (bancoDados == null)
-                {
-                    return NotFound($"O BancoDados vinculado ao cliente: {cliente.Nome} não encontrado.");
-                }
-                else
-                {
-                    return Ok(bancoDados);
-                }
-            }
-            catch (Exception ex)
-            {
+        //[HttpGet]
+        //[Route("GetByClienteId")]
+        //public async Task<IActionResult> GetByCliente(long clienteId)
+        //{
+        //    try
+        //    {
+        //        var cliente = await _clienteService.GetClienteById(clienteId);
+        //        if (cliente == null)
+        //        {
+        //            return NotFound($"Cliente de ID: {clienteId} não encontrado");
+        //        }
+        //        var bancoDados = await _bancoDadosService.GetTodosBancoDadosByCliente(clienteId);
+        //        if (bancoDados == null)
+        //        {
+        //            return NotFound($"O BancoDados vinculado ao cliente: {cliente.Nome} não encontrado.");
+        //        }
+        //        else
+        //        {
+        //            return Ok(bancoDados);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
 
-                return this.StatusCode(StatusCodes.Status500InternalServerError,
-                                       $"Erro ao tentar recuperar BancoDados vinculado ao cliente: {clienteId}. Erro: {ex.Message}");
-            }
-        }
+        //        return this.StatusCode(StatusCodes.Status500InternalServerError,
+        //                               $"Erro ao tentar recuperar BancoDados vinculado ao cliente: {clienteId}. Erro: {ex.Message}");
+        //    }
+        //}
 
 
         [HttpPost]

@@ -1,0 +1,109 @@
+
+<form (ngSubmit)="onSubmit()" [formGroup]="perfilForm" #formDir="ngForm">
+  <div class="form-group">
+
+    <div class="row" style="margin-top: 15px;">
+      <div class="form-group col-md-6">
+        <label>Primeiro Nome</label>
+        <input type="text"
+        formControlName="nome"
+        class="form-control"/>
+        <div *ngIf="form.nome.invalid && formDir.submitted" class="validation-erro">
+          <p *ngIf="form.nome.errors?.['required']">O campo Primeiro Nome é obrigatório</p>
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <label>Último nome</label>
+        <input type="text"
+        formControlName="sobrenome"
+        class="form-control"/>
+        <div *ngIf="form.sobrenome.invalid && formDir.submitted" class="validation-erro">
+          <p *ngIf="form.sobrenome.errors?.['required']">O campo Último Nome é obrigatório</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-6">
+        <label>E-mail</label>
+        <input type="text"
+        formControlName="email"
+        class="form-control" />
+        <div *ngIf="form.email.invalid && formDir.submitted" class="validation-erro">
+          <p *ngIf="form.email.errors?.['required']">O campo Email é obrigatório</p>
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <label>Perfil</label>
+        <select formControlName="perfilUsuario" class="form-control"
+        [ngClass]="{ 'is-invalid': form.perfilUsuario.errors && form.perfilUsuario.touched }">
+        <option value="NaoInformado">Não Informado</option>
+        <option value="Administrador">Administrador</option>
+        <option value="Desenvolvedor">Desenvolvedor</option>
+      </select>
+      <div *ngIf="form.perfilUsuario.errors && form.perfilUsuario.touched" class="invalid-feedback">
+        <div *ngIf="form.perfilUsuario.errors.required">função é obrigatório é obrigatório</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- <div class="row">
+
+  <div class="form-group col-sm">
+    <label>Função</label>
+    <select class="form-control">
+      <option value=""></option>
+      <option value="Participante">Participante</option>
+      <option value="Palestrante">Palestrante</option>
+    </select>
+  </div>
+  <form-group class="col-12">
+    <label>Descrição</label>
+    <input type="text" class="form-control" />
+  </form-group>
+</div> -->
+<div>
+  <h3 class="pt-3 border-bottom">Mudar Senha</h3>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <label>Password</label>
+    <input type="password"
+    formControlName="password"
+    class="form-control"
+    autocomplete="new-password"
+    />
+    <div *ngIf="form.password.invalid && formDir.submitted" class="validation-erro">
+      <p *ngIf="form.password.errors?.['required']">O campo Password é obrigatório</p>
+    </div>
+    <div *ngIf="form.password.invalid && formDir.submitted" class="validation-erro">
+      <p *ngIf="form.password.errors?.['minlength']">Deve conter no mínimo 6 caracteres</p>
+    </div>
+  </div>
+  <div class="form-group col-md-6">
+    <label>Confirmar Senha</label>
+    <input type="password"
+    formControlName="confirmarPassword"
+    class="form-control"
+    />
+    <div *ngIf="form.confirmarPassword.invalid && formDir.submitted" class="validation-erro">
+      <p *ngIf="form.confirmarPassword.errors?.['required']">O campo Password é obrigatório</p>
+    </div>
+    <div *ngIf="form.confirmarPassword.invalid && formDir.submitted" class="validation-erro">
+      <p *ngIf="form.confirmarPassword.errors?.['informacaoDiferente']">As passwords não correspondem</p>
+    </div>
+  </div>
+</div>
+
+<div class="card-footer">
+  <div class="d-flex justify-content-end">
+    <button (click)="resetForm($event)" class="btn btn-outline-danger me-auto border" routerLink="/dashboard">
+      Cancelar Alteração
+    </button>
+    <button class="btn btn-success">
+      <!-- <span class="spinner-border spinner-border-sm mr-1"></span> -->
+      Salvar Alteração
+    </button>
+  </div>
+</div>
+</form>

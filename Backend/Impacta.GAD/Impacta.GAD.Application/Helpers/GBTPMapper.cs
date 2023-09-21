@@ -17,6 +17,10 @@ namespace Impacta.GAD.Application.Helpers
             CreateMap<User, UserDTO>().ReverseMap();
             CreateMap<User, UserLoginDTO>().ReverseMap();
             CreateMap<User, UserUpdateDTO>().ReverseMap();
+
+            CreateMap<Usuario, UsuarioDTO>().ReverseMap();
+            CreateMap<Usuario, UsuarioAddDTO>().ReverseMap();
+            CreateMap<Usuario, UsuarioUpdateDTO>().ReverseMap();
         }
     }
 }

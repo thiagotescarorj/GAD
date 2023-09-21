@@ -40,7 +40,7 @@ namespace Impacta.GAD.Application.Services
 
                 if (await _GBTRepository.SalvarAlteracoesAsync())
                 {
-                    var retorno = await _chamadoRepository.GetChamadoById(chamado.Id);
+                    var retorno = await _chamadoRepository.GetChamadoByIdAsync(usuarioLogadoId, chamado.Id, false);
                     return _mapper.Map<ChamadoDTO>(retorno);
                 }
                 return null;
@@ -52,11 +52,11 @@ namespace Impacta.GAD.Application.Services
             }
         }
 
-        public async Task<ChamadoDTO> AtualizarChamado(long chamadoId, ChamadoDTO model)
+        public async Task<ChamadoDTO> AtualizarChamado(long usuarioLogadoId,long chamadoId, ChamadoDTO model)
         {
             try
             {
-                var chamado = await _chamadoRepository.GetChamadoById(chamadoId);
+                var chamado = await _chamadoRepository.GetChamadoByIdAsync(usuarioLogadoId, chamadoId, false);
                 if (chamado == null) return null;
 
                 model.Id = chamado.Id;
@@ -67,7 +67,7 @@ namespace Impacta.GAD.Application.Services
 
                 if (await _GBTRepository.SalvarAlteracoesAsync())
                 {
-                    var retorno = await _chamadoRepository.GetChamadoById(chamado.Id);
+                    var retorno = await _chamadoRepository.GetChamadoByIdAsync(usuarioLogadoId, chamado.Id, false);
                     return _mapper.Map<ChamadoDTO>(retorno);
                 }
 
@@ -80,11 +80,11 @@ namespace Impacta.GAD.Application.Services
             }
         }
 
-        public async Task<bool> ExcluirChamado(long chamadoId)
+        public async Task<bool> ExcluirChamado(long usuarioLogadoId, long chamadoId)
         {
             try
             {
-                var chamado = await _chamadoRepository.GetChamadoById(chamadoId);
+                var chamado = await _chamadoRepository.GetChamadoByIdAsync(usuarioLogadoId, chamadoId, false);
                 if (chamado == null)
                 {
                     throw new Exception($"Chamado de Id {chamadoId} não foi localizado.");
@@ -115,47 +115,29 @@ namespace Impacta.GAD.Application.Services
                 throw new Exception(ex.Message);
             }
         }
-
-        public async Task<List<ChamadoDTO>> GetTodosChamadosFromUser(long userId)
+        public async Task<ChamadoDTO> GetChamadoByIdAsync(long userId, long chamadoId, bool includeUsuarios = false)
         {
             try
             {
+                var chamado = await _chamadoRepository.GetChamadoByIdAsync(userId, chamadoId, includeUsuarios);
+                if (chamado == null) return null;
+
+                var resultado = _mapper.Map<ChamadoDTO>(chamado);
+
+                return resultado;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<List<ChamadoDTO>> GetTodosChamadosFromUser(long userId) {
+            try {
                 var chamados = _chamadoRepository.GetTodosChamadosFromUser(userId);
                 if (chamados == null) return null;
 
                 var resultado = _mapper.Map<List<ChamadoDTO>>(chamados);
-
-                return resultado;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
-
-        public async Task<ChamadoDTO> GetChamadoById(long chamadoId)
-        {
-            try
-            {
-                var chamado = await _chamadoRepository.GetChamadoById(chamadoId);
-                if (chamado == null) return null;
-
-                var resultado = _mapper.Map<ChamadoDTO>(chamado);
-
-                return resultado;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
-
-        public async Task<ChamadoDTO> GetChamadoFromUser(long chamadoId, long userId) {
-            try {
-                var chamado = await _chamadoRepository.GetChamadoByUser(chamadoId, userId);
-                if (chamado == null) return null;
-
-                var resultado = _mapper.Map<ChamadoDTO>(chamado);
 
                 return resultado;
             } catch (Exception ex) {
@@ -163,73 +145,71 @@ namespace Impacta.GAD.Application.Services
             }
         }
 
-        public async Task<List<ChamadoDTO>> GetTodosChamadosByBancoDados(long bancoDadosId)
-        {
-            try
-            {
-                var chamados = await _chamadoRepository.GetTodosChamadosByBancoDados(bancoDadosId);
-                if (chamados == null) return null;
 
-                var resultado = _mapper.Map<List<ChamadoDTO>>(chamados);
+        //public async Task<ChamadoDTO> GetChamadoFromUser(long chamadoId, long userId) {
+        //    try {
+        //        var chamado = await _chamadoRepository.GetChamadoByUser(chamadoId, userId);
+        //        if (chamado == null) return null;
 
-                return resultado;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
+        //        var resultado = _mapper.Map<ChamadoDTO>(chamado);
 
-        public async Task<List<ChamadoDTO>> GetTodosChamadosByCliente(long clienteId)
-        {
-            try
-            {
-                var chamados = await _chamadoRepository.GetTodosChamadosByCliente(clienteId);
-                if (chamados == null) return null;
+        //        return resultado;
+        //    } catch (Exception ex) {
+        //        throw new Exception(ex.Message);
+        //    }
+        //}
 
-                var resultado = _mapper.Map<List<ChamadoDTO>>(chamados);
+        //public async Task<List<ChamadoDTO>> GetTodosChamadosByBancoDados(long bancoDadosId) {
+        //    try {
+        //        var chamados = await _chamadoRepository.GetTodosChamadosByBancoDados(bancoDadosId);
+        //        if (chamados == null) return null;
 
-                return resultado;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
+        //        var resultado = _mapper.Map<List<ChamadoDTO>>(chamados);
 
-        public async Task<List<ChamadoDTO>> GetTodosChamadosByDns(long dnsId)
-        {
-            try
-            {
-                var chamados = await _chamadoRepository.GetTodosChamadosByDns(dnsId);
+        //        return resultado;
+        //    } catch (Exception ex) {
+        //        throw new Exception(ex.Message);
+        //    }
+        //}
 
-                var resultado = _mapper.Map<List<ChamadoDTO>>(chamados);
+        //public async Task<List<ChamadoDTO>> GetTodosChamadosByCliente(long clienteId) {
+        //    try {
+        //        var chamados = await _chamadoRepository.GetTodosChamadosByCliente(clienteId);
+        //        if (chamados == null) return null;
 
-                if (resultado == null) return null;
+        //        var resultado = _mapper.Map<List<ChamadoDTO>>(chamados);
 
-                return resultado;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
+        //        return resultado;
+        //    } catch (Exception ex) {
+        //        throw new Exception(ex.Message);
+        //    }
+        //}
 
-        public async Task<List<ChamadoDTO>> GetTodosChamadosByNumero(string numero)
-        {
-            try
-            {
-                var chamados = await _chamadoRepository.GetTodosChamadosByNumero(numero);
-                if (chamados == null) return null;
+        //public async Task<List<ChamadoDTO>> GetTodosChamadosByDns(long dnsId) {
+        //    try {
+        //        var chamados = await _chamadoRepository.GetTodosChamadosByDns(dnsId);
 
-                var resultado = _mapper.Map<List<ChamadoDTO>>(chamados);
+        //        var resultado = _mapper.Map<List<ChamadoDTO>>(chamados);
 
-                return resultado;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
+        //        if (resultado == null) return null;
+
+        //        return resultado;
+        //    } catch (Exception ex) {
+        //        throw new Exception(ex.Message);
+        //    }
+        //}
+
+        //public async Task<List<ChamadoDTO>> GetTodosChamadosByNumero(string numero) {
+        //    try {
+        //        var chamados = await _chamadoRepository.GetTodosChamadosByNumero(numero);
+        //        if (chamados == null) return null;
+
+        //        var resultado = _mapper.Map<List<ChamadoDTO>>(chamados);
+
+        //        return resultado;
+        //    } catch (Exception ex) {
+        //        throw new Exception(ex.Message);
+        //    }
+        //}
     }
 }

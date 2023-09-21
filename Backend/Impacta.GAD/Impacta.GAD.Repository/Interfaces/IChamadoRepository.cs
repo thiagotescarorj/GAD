@@ -13,7 +13,7 @@ namespace Impacta.GAD.Repository.Interfaces
         #region Chamado
         List<Chamado> GetTodosChamados();
         List<Chamado> GetTodosChamadosFromUser(long userId);
-        Task<Chamado> GetChamadoById(long chamadoId);
+        Task<Chamado> GetChamadoByIdAsync(long userId, long chamadoId, bool includeUsuarios = false);
         Task<Chamado> GetChamadoByUser(long chamadoId, long userId);
         Task<List<Chamado>> GetTodosChamadosByNumero(string numero);
         Task<List<Chamado>> GetTodosChamadosByCliente(long clienteId);

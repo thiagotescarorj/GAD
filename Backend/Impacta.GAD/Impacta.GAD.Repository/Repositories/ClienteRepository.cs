@@ -50,7 +50,8 @@ namespace Impacta.GAD.Repository.Repositories
         {
             IQueryable<Cliente> query = _context.Cliente
                                              .AsNoTracking()
-                                             .Where(x => x.Nome.ToLower().Contains(pageParams.Term.ToLower()));
+                                             .Where(x => x.Nome.ToLower().Contains(pageParams.Term.ToLower())
+                                                      || x.DataHoraCadastro.ToString().Contains(pageParams.Term));
             return await PageList<Cliente>.CreateAsync(query, pageParams.PageNumber, pageParams.PageSize);
         }
 

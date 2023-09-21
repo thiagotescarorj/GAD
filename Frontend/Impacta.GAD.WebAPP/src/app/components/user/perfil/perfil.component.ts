@@ -15,151 +15,62 @@ import { ValidatorField } from 'src/app/helpers/ValidatorField';
 })
 export class PerfilComponent implements OnInit {
 
-  @Output() changeFormValue = new EventEmitter();
+  public usuario = {} as UserUpdate;
+  public file: File;
+  public imagemURL = '';
 
 
-  usuario = {} as UserUpdate;
+  constructor(
+    private spinner: NgxSpinnerService,
+    private toastr: ToastrService,
+    private accountService: AccountService
+  ) {}
 
-  perfilForm!: FormGroup;
 
-  constructor(private fb: FormBuilder,
-              public accountService: AccountService,
-              private router: Router,
-              private toaster: ToastrService,
-              private spinner: NgxSpinnerService){}
-
-  formOptions: AbstractControlOptions = {
-    validators: ValidadorCampos.ValidarCampos('password', 'confirmarPassword')
-  };
-
-    ngOnInit(): void {
-      // this.perfilForm = this.fb.group({
-      //   primeiroNome: ['', Validators.required],
-      //   ultimoNome: ['', Validators.required],
-      //   email: ['', [Validators.required, Validators.email]],
-      //   password: ['', [Validators.required, Validators.minLength(6)]],
-      //   confirmarPassword: ['', Validators.required]
-      // }, this.formOptions);
-
-      this.validation();
-      this.carregarUsuario();
-      this.verificaForm();
+  ngOnInit(): void {
 
   }
-  private verificaForm(): void {
-    this.perfilForm.valueChanges
-      .subscribe(() => this.changeFormValue.emit({...this.perfilForm.value}))
+
+  public setFormValue(usuario: UserUpdate): void {
+    this.usuario = usuario;
+    // if (this.usuario.imagemURL)
+    //   this.imagemURL = environment.apiURL + `resources/perfil/${this.usuario.imagemURL}`;
+    // else
+    //   this.imagemURL = './assets/img/perfil.png';
+
   }
 
+  onFileChange(ev: any): void {
+    const reader = new FileReader();
 
-  private carregarUsuario(): void {
-    this.spinner.show();
-    this.accountService
-      .getUser()
-      .subscribe(
-        (userRetorno: UserUpdate) => {
-          console.log(userRetorno);
-          this.usuario = userRetorno;
-          this.perfilForm.patchValue(this.usuario);
-          this.toaster.success('Usuário Carregado', 'Sucesso');
-        },
-        (error) => {
-          console.error(error);
-          this.toaster.error('Usuário não Carregado', 'Erro');
-          this.router.navigate(['/dashboard']);
-        }
-      )
-      .add(() => this.spinner.hide());
+    reader.onload = (event: any) => this.imagemURL = event.target.result;
+
+    this.file = ev.target.files;
+    reader.readAsDataURL(this.file[0]);
+
+   // this.uploadImagem();
   }
-  private validation(): void {
-    const formOptions: AbstractControlOptions = {
-      validators: ValidatorField.MustMatch('password', 'confirmarPassword')
-    };
-       this.perfilForm = this.fb.group({
-         userName:[''],
-         nome: ['', Validators.nullValidator],
-         sobrenome: ['', Validators.nullValidator],
-         perfilUsuario: ['NaoInformado', Validators.nullValidator],
-         email: ['', [Validators.nullValidator, Validators.email]],
-         password: ['', [Validators.minLength(6),Validators.nullValidator]],
-         confirmarPassword: ['', Validators.nullValidator]
-       },
-       formOptions)
-       ;
 
-    }
-
-    get form(): any {
-      return this.perfilForm.controls;
-    }
-
-    onSubmit(): void {
-      this.atualizarUsuario();
-    }
-
-    public atualizarUsuario() {
-      this.usuario = { ...this.perfilForm.value };
-      this.spinner.show();
-
-      // if (this.form.funcao.value == 'Palestrante') {
-      //   this.palestranteService.post().subscribe(
-      //     () => this.toaster.success('Função palestrante Ativada!', 'Sucesso!'),
-      //     (error) => {
-      //       this.toaster.error('A função palestrante não pode ser Ativada', 'Error');
-      //       console.error(error);
-      //     }
-      //   )
-      // }
-
-      this.accountService
-        .updateUser(this.usuario)
-        .subscribe(
-          () => this.toaster.success('Usuário atualizado!', 'Sucesso'),
-          (error) => {
-            this.toaster.error(error.error);
-            console.error(error);
-          }
-        )
-        .add(() => this.spinner.hide());
-    }
-
-    public resetForm(event: any): void {
-      event.preventDefault();
-      this.perfilForm.reset();
-    }
-
-  // get primeiroNome(){
-  //   return this.perfilForm.get('primeiroNome')!;
-  // }
-
-  // get ultimoNome(){
-  //   return this.perfilForm.get('ultimoNome')!
-  // }
+  // private uploadImagem(): void {
+  //   this.spinner.show();
+  //   this.accountService
+    //  .postUpload(this.file)
+      //.subscribe(
+      //   () => this.toastr.success('Imagem atualizada com Sucesso', 'Sucesso!'),
+      //   (error: any) => {
+      //     this.toastr.error('Erro ao fazer upload de imagem','Erro!');
+      //     console.error(error);
+      //   }
+      // ).add(() => this.spinner.hide());
+ // }
 
 
-  // get email(){
-  //   return this.perfilForm.get('email')!
-  // }
 
-  // get password(){
-  //   return this.perfilForm.get('password')!
-  // }
 
-  // get confirmarPassword(){
-  //   return this.perfilForm.get('confirmarPassword')!
-  // }
 
-  // submit(){
-  //   if(this.perfilForm.invalid){
-  //     return;
-  //   }
-  //   console.log('Criado Formulário')
-  // }
 
-  //  resetForm(event: any): void{
-  //   event.preventDefault();
-  //   this.perfilForm.reset();
-  // }
+
+
 
 }
 

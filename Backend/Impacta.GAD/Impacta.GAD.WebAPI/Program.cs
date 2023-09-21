@@ -74,6 +74,7 @@ builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
 builder.Services.AddScoped<IDNSRepository, DNSRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+builder.Services.AddScoped<IProjetoRepository, ProjetoRepository>();
 
 builder.Services.AddScoped<IChamadoService, ChamadoService>();
 builder.Services.AddScoped<IBancoDadosService, BancoDadosService>();
@@ -81,6 +82,8 @@ builder.Services.AddScoped<IClienteService, ClienteService>();
 builder.Services.AddScoped<IDNSService, DNSService>();
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<IUsuarioService, UsuarioService>();
+builder.Services.AddScoped<IProjetoService, ProjetoService>();
 
 builder.Services.AddSwaggerGen(options =>
 {

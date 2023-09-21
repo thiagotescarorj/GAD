@@ -15,6 +15,6 @@ namespace Impacta.GAD.Application.Interfaces
         Task<List<DNSDTO>> GetTodosDNS();
         Task<DNSDTO> GetDNSById(long dnsId);
         Task<List<DNSDTO>> GetTodosDNSByCliente(long dnsId);
-        Task<List<DNSDTO>> GetTodosDNSByNome(string nome);
+        //Task<List<DNSDTO>> GetTodosDNSByNome(string nome);
     }
 }

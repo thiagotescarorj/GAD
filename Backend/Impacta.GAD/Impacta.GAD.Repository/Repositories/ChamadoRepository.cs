@@ -2,6 +2,7 @@
 using Impacta.GAD.Repository.DataContext;
 using Impacta.GAD.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,13 +47,21 @@ namespace Impacta.GAD.Repository.Repositories
             return (await _context.SaveChangesAsync()) > 0;
         }
 
-        public async Task<Chamado> GetChamadoById(long chamadoId)
+        public async Task<Chamado> GetChamadoByIdAsync(long userId, long chamadoId, bool includeUsuarios = false)
         {
-            IQueryable<Chamado> query = _context.Chamado.Where(x => x.Id == chamadoId);
+            IQueryable<Chamado> query = _context.Chamado
+                .Include(e => e.Projetos);
 
-            return await query.AsNoTracking().FirstOrDefaultAsync();
+            if (includeUsuarios) {
+                query = query
+                    .Include(e => e.UsuarioChamados)
+                    .ThenInclude(pe => pe.Usuario);
+            }
 
+            query = query.AsNoTracking().OrderBy(e => e.Id)
+                         .Where(e => e.Id == chamadoId && e.UserId == userId);
 
+            return await query.FirstOrDefaultAsync();
         }
 
         public async Task<Chamado> GetChamadoByUser(long chamadoId, long userId) {

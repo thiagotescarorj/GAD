@@ -19,7 +19,8 @@ namespace Impacta.GAD.Repository.DataContext
         public DbSet<Cliente> Cliente { get; set; }
         public DbSet<DNS> DNS { get; set; }
         public DbSet<Usuario> Usuario { get; set; }
-
+        public DbSet<UsuarioChamado> UsuarioChamados { get; set; }
+        public DbSet<Projeto> Projetos { get; set; }
 
         //public DbSet<LogCrud> LogCrud { get; set; }
         //public DbSet<ProcedimentosComuns> ProcedimentosComuns { get; set; }
